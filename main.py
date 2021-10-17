@@ -10,26 +10,36 @@ from view import result
 
 st.title('proper risk calculator DEMO')
 
-st.write('本アプリケーションは、顧客情報の入力後にプール区分を判定し、目標収益を達成するために必要な金利を出力します。')
+st.write('本アプリケーションは、顧客情報の入力後にプール区分を判定し、目標収益を達成するために必要な金利を出力します。(DEMO版の目標収益率は6%です。)')
 
-rora = 0.06 #目標収益率
+rora = 0.09 #目標収益率
 
-sex = st.selectbox('顧客の性別は何ですか？',
-                  ('male', 'female'))
+company = st.text_input('顧客の所属する企業を入力してください')
 
-education = st.selectbox('顧客の学歴は何ですか？',
-                        ('Doctor', 'Master', 'Bachelor', 'Highschool'))
+work_year = st.number_input('勤続年数を入力してください',
+                          value=1)
+
+st.number_input('顧客の同居家族は何人ですか？',
+                          value=1)
+
+
 
 exposure = st.number_input('顧客のローン希望額を入力してください。単位は円です。',
                           value=1)
 
+logexposure = np.log(exposure)
+
 execution = st.button('計算開始')
 
-pool = cr.calc_pool(sex, education)
-pd = cr.decide_pd(pool)
-rate = cr.calc_proper_rate(exposure, pool, rora)
+pd = cr.calc_pd(logexposure, work_year)
+rate = cr.calc_proper_rate(pd, exposure, rora)
 
 if execution == True:
     result.main(rate)
 else:
     pass
+
+
+"""
+author:takuma tamura
+"""
