@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 from scipy.stats import norm
 
-def calc_pd(logexposure, work_year):
+def calc_pd(exposure, work_year):
+    logexposure = np.log(exposure)
     if logexposure <= 12.086:
         if work_year == 0:
             return 0.01
