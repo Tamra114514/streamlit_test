@@ -27,10 +27,9 @@ exposure = st.number_input('顧客のローン希望額を入力してくださ�
 
 execution = st.button('計算開始')
 
-pd = cr.calc_pd(exposure, work_year)
-rate = cr.calc_proper_rate(pd, exposure, rora)
-
 if execution == True:
+    pd = cr.calc_pd(exposure, work_year)
+    rate = cr.calc_proper_rate(pd, exposure, rora)
     result.main(rate)
 else:
     pass
