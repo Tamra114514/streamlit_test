@@ -6,57 +6,57 @@ def calc_pd(exposure, work_year):
     logexposure = np.log(exposure)
     if logexposure <= 12.086:
         if work_year == 0:
-            return 0.01
+            return 0.0411
         elif work_year > 0 and work_year <= 4.756:
-            return 0.02
+            return 0.0947
         elif work_year > 4.756:
-            return 0.03
+            return 0.029
         else:
             pass
     elif logexposure > 12.086 and logexposure <= 12.324:
         if work_year == 0:
-            return 0.04
+            return 0.0297
         elif work_year > 0 and work_year <= 4.756:
-            return 0.05
+            return 0.1115
         elif work_year > 4.756 and work_year <= 6.614:
-            return 0.06
+            return 0.0941
         elif work_year > 6.614:
-            return 0.07
+            return 0.0622
         else:
             pass
     elif logexposure > 12.324 and logexposure <= 12.933:
         if work_year == 0:
-            return 0.08
+            return 0.0489
         elif work_year > 0 and work_year <= 2.301:
-            return 0.09
+            return 0.1037
         elif work_year > 2.301 and work_year <= 4.756:
-            return 0.1
+            return 0.0882
         elif  work_year > 4.756 and work_year <= 9.036:
-            return 0.11
+            return 0.0696
         elif work_year > 9.036:
-            return 0.12
+            return 0.0451
         else:
             pass
     elif logexposure > 12.933 and logexposure <= 13.025:
         if work_year == 0:
-            return 0.13
+            return 0.0693
         elif work_year > 0 and work_year <= 4.756:
-            return 0.14
+            return 0.1320
         elif work_year > 4.756 and work_year <= 9.036:
-            return 0.15
+            return 0.0882
         elif work_year > 9.036:
-            return 0.16
+            return 0.0592
         else:
             pass
     elif logexposure > 13.025:
         if work_year == 0:
-            return 0.17
+            return 0.0467
         elif work_year > 0 and work_year <= 4.756:
-            return 0.18
+            return 0.0622
         elif work_year > 4.756 and work_year <= 13.658:
-            return 0.19
+            return 0.0445
         elif work_year > 13.658:
-            return 0.20
+            return 0.0327
         else:
             pass
 
@@ -69,10 +69,7 @@ def calc_ra(pd, exposure):
     RA = K * 12.5 * exposure
     return RA
     
-"""
-実際のRA算出式とは異なる。あくまでデモ
-"""
-    
+
 def calc_proper_rate(pd, exposure, rora):
     ra = calc_ra(pd, exposure)
     return ((rora * ra)/(exposure)) * 100
